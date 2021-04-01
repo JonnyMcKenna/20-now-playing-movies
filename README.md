@@ -2,4 +2,4 @@
 
 Please run 'yarn start' to run the app in development mode and 'yarn test' to launch the test runner in the interactive watch mode.
 
-![Alt text](./assets/20-now-playing-movies-screenshot.JPG?raw=true "20 Now Playing Movies App")
+![Alt text](./assets/20-now-playing-movies-image.JPG?raw=true "20 Now Playing Movies App")
