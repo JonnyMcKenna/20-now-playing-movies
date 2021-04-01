@@ -20,9 +20,11 @@ export default class App extends React.Component<MyProps, MyState> {
   componentDidMount() {
     fetch(
       "https://api.themoviedb.org/3/movie/now_playing?api_key=d68f38001ae6980d0c0cf024880200d6"
-    )
-      .then((resp) => resp.json())
-      .then((data) => this.setState({ movieData: data.results || [] }));
+    ).then((response) => {
+      response.json().then((data) => this.setState({ movieData: data.results || [] }))
+    }).catch((error) => {
+      console.log(error);
+    });
   }
 
   compareBy(key: string, direction: string) {
@@ -31,11 +33,11 @@ export default class App extends React.Component<MyProps, MyState> {
         if (a[key] < b[key]) return -1;
         if (a[key] > b[key]) return 1;
         return 0;
-      } else {
-        if (a[key] > b[key]) return -1;
-        if (a[key] < b[key]) return 1;
-        return 0;
       }
+
+      if (a[key] > b[key]) return -1;
+      if (a[key] < b[key]) return 1;
+      return 0;
     };
   }
 
@@ -54,10 +56,9 @@ export default class App extends React.Component<MyProps, MyState> {
         <p id="description">
           {"Please sort the table by clicking on the rating table header."}
         </p>
-
         <table id="movie-table" className="m-table">
           <thead>
-            <tr style={{ marginBottom: "10px" }}>
+            <tr>
               <th id="title-header">Title</th>
               <th id="rating-header" onClick={(e) => this.sortBy("vote_average")}>Rating</th>
             </tr>
