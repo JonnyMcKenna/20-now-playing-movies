@@ -1,6 +1,5 @@
 #App {
     background-color: #23263A;
-    height: 100vh;
     padding: 15px;
 }
 
@@ -20,17 +19,34 @@
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+    background: #40506a;
+    padding: 30px;
+    border-radius: 20px;
 }
 
 #title-header {
     color: white;
     font-size: 20px;
+    padding: 0 60px 30px 60px;
 }
 
 #rating-header {
     cursor: pointer;
     color: white;
     font-size: 20px;
+    padding: 0 60px 30px 60px;
+}
+
+#poster-header {
+    color: white;
+    font-size: 20px;
+    padding: 0 60px 30px 60px;
+}
+
+#release-date-header {
+    color: white;
+    font-size: 20px;
+    padding: 0 60px 30px 60px;
 }
 
 td {

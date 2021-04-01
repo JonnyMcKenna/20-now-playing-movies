@@ -13,18 +13,21 @@ export default class App extends React.Component<MyProps, MyState> {
 
     this.state = {
       movieData: [],
-      direction: "asc",
+      direction: "desc",
     };
+
+    this.sortBy = this.sortBy.bind(this);
   }
 
   componentDidMount() {
     fetch(
       "https://api.themoviedb.org/3/movie/now_playing?api_key=d68f38001ae6980d0c0cf024880200d6"
     ).then((response) => {
-      response.json().then((data) => this.setState({ movieData: data.results || [] }))
+      response.json().then((data) => this.setState({ movieData: data.results.sort(this.compareBy('vote_average', 'desc')) || [] }));
     }).catch((error) => {
       console.log(error);
     });
+
   }
 
   compareBy(key: string, direction: string) {
@@ -49,31 +52,51 @@ export default class App extends React.Component<MyProps, MyState> {
   }
 
   render() {
-    var newdata = this.state.movieData;
+
+  function TableData( props: any ) {
+    const { movie : {vote_average, original_title, poster_path, release_date}, movie } = props;
+
+    return (
+      <tr data-item={movie}>
+      <td data-title="Rating">{vote_average}</td>
+      <td data-title="Title">{original_title}</td>
+      <td data-title="Poster"><img src={"https://image.tmdb.org/t/p/original/" + poster_path} alt={original_title} height="60"/></td>
+      <td data-title="Release Date">{release_date}</td>
+    </tr>
+    )
+  }
+    
+  function Table( props:any ) {
+    const { onClick, newData } = props;
+
+    return (
+      <table id="movie-table" className="m-table">
+      <thead>
+        <tr>
+          <th key={"rating-header"} id="rating-header" onClick={(e) => onClick("vote_average")}>Rating</th>
+          <th key={"title-header"} id="title-header">Title</th>
+          <th key={"poster-header"} id="poster-header">Poster</th>
+          <th key={"release-date-header"} id="release-date-header">Release Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {newData.map(function (movie: any, index: any) {
+          return (
+            <TableData key={index} movie={movie}/>
+          );
+        })}
+      </tbody>
+    </table>
+    );
+  }
+
     return (
       <div id="App">
         <h1 id="heading">{"20 Now Playing Movies"}</h1>
         <p id="description">
           {"Please sort the table by clicking on the rating table header."}
         </p>
-        <table id="movie-table" className="m-table">
-          <thead>
-            <tr>
-              <th id="title-header">Title</th>
-              <th id="rating-header" onClick={(e) => this.sortBy("vote_average")}>Rating</th>
-            </tr>
-          </thead>
-          <tbody>
-            {newdata.map(function (movie: any, index: any) {
-              return (
-                <tr key={index} data-item={movie}>
-                  <td data-title="Title">{movie.original_title}</td>
-                  <td data-title="Rating">{movie.vote_average}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        <Table onClick={this.sortBy} newData={this.state.movieData}/>;
       </div>
     );
   }
