@@ -1,58 +1,87 @@
-#App {
-    background-color: #23263A;
-    padding: 15px;
+body {
+  padding: 15px;
+  background-color: #141414;
+  animation: fadebackground 6s 1;
+}
+
+@keyframes fadebackground {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 #heading {
-    text-align: center;
-    margin-top: 0px;
-    color: white;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  color: #b9090b;
+  font-size: 45px;
 }
 
 #description {
-    text-align: center;
-    color: white;
-    margin-bottom: 25px;
+  text-align: center;
+  color: white;
+  margin-top: 40px;
+  margin-bottom: 60px;
 }
 
 #movie-table {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    background: #40506a;
-    padding: 30px;
-    border-radius: 20px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  background: black;
+  padding: 30px;
+  border-radius: 20px;
 }
 
 #title-header {
-    color: white;
-    font-size: 20px;
-    padding: 0 60px 30px 60px;
+  color: #b9090b;
+  font-size: 24px;
+  padding: 0 60px 30px 60px;
 }
 
 #rating-header {
-    cursor: pointer;
-    color: white;
-    font-size: 20px;
-    padding: 0 60px 30px 60px;
+  cursor: pointer;
+  color: #b9090b;
+  font-size: 24px;
+  padding: 0 60px 30px 60px;
 }
 
 #poster-header {
-    color: white;
-    font-size: 20px;
-    padding: 0 60px 30px 60px;
+  color: #b9090b;
+  font-size: 24px;
+  padding: 0 60px 30px 60px;
 }
 
 #release-date-header {
-    color: white;
-    font-size: 20px;
-    padding: 0 60px 30px 60px;
+  color: #b9090b;
+  font-size: 24px;
+  padding: 0 60px 30px 60px;
+}
+
+.sortImage {
+    width: 20px;
+    padding-left: 10px;
+}
+
+.footer {
+    margin: 40px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.websiteURL {
+    color: #b9090b;
+    text-decoration: none;
 }
 
 td {
-    color: white;
+  color: white;
 }
 
 tr {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }

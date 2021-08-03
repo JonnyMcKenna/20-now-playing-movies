@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import sortImage from './image/sort-image.png';
 
 type MyProps = {};
 type MyState = {
@@ -73,7 +74,7 @@ export default class App extends React.Component<MyProps, MyState> {
       <table id="movie-table" className="m-table">
       <thead>
         <tr>
-          <th key={"rating-header"} id="rating-header" onClick={(e) => onClick("vote_average")}>Rating</th>
+          <th key={"rating-header"} id="rating-header" onClick={(e) => onClick("vote_average")}>Rating<img src={sortImage} alt="sort" className="sortImage"/></th>
           <th key={"title-header"} id="title-header">Title</th>
           <th key={"poster-header"} id="poster-header">Poster</th>
           <th key={"release-date-header"} id="release-date-header">Release Date</th>
@@ -97,6 +98,7 @@ export default class App extends React.Component<MyProps, MyState> {
           {"Please sort the table by clicking on the rating table header."}
         </p>
         <Table onClick={this.sortBy} newData={this.state.movieData}/>;
+        <p className="footer"><a className="websiteURL" href="https://www.jonnymckenna.com/">Designed and Developed by Jonathan McKenna</a></p>
       </div>
     );
   }
